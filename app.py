@@ -10,12 +10,12 @@ from haystack.utils import Secret
 from haystack_integrations.components.generators.google_ai import GoogleAIGeminiChatGenerator, GoogleAIGeminiGenerator
 from haystack.components.builders import PromptBuilder
 import streamlit as st
-from data_processor import fetch_data,ingest_data
+from data_process import fetch_data,ingest_data
 
 load_dotenv()
 
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 generation_config = {
   "temperature": 1,

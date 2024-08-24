@@ -20,7 +20,7 @@ load_dotenv()
 
 INDEX_NAME = "idx:codes_vss"
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 generation_config = {
   "temperature": 1,
@@ -81,7 +81,7 @@ def ingest_data(client: redis.Redis, data):
     for i in range(1, len(keys)+1):
         embed_inputs.append(
             f"""{defs[i-1][0]}\n\n{descs[i-1][0]}"""
-        )
+    )
     embeddings = get_embeddings(embed_inputs)
     VECTOR_DIMENSION = len(embeddings[0])
     pipeline = client.pipeline()
@@ -105,7 +105,7 @@ def ingest_data(client: redis.Redis, data):
                 "DISTANCE_METRIC": "COSINE",
             },
             as_name="vector",
-        ),
+        )
     )
     definition = IndexDefinition(prefix=["code:"], index_type=IndexType.JSON)
     try:
